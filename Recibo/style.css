@@ -1,0 +1,106 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+
+.macaco1{
+  font-weight: bold;
+  margin-left: 30%;
+  font-size: 1.3em;
+  margin-top: 33px;
+}
+
+br{
+  margin: 4cm;
+}
+
+
+.macaco2{
+  font-weight: bold;
+  margin-left: 38%;
+  font-size: 1.3em;
+}
+
+.macaco3{
+  font-size: 1.1em;
+}
+
+.dados{
+  padding:20px;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.linha {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+}
+
+.macaco{
+  margin-left: 111px;
+}
+
+
+
+hr{
+  border-color: black;
+  width:100%;
+  
+}
+
+.hr {
+  border-left: 17px solid black;
+  width:100%;
+  }
+
+.print{
+  font-family: sans-serif;
+  border: 1px solid black;
+  width: 800px;
+  margin-top: 10px;
+
+}
+
+.linhavertical {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 100%;
+    background-color: red;
+  }
+  
+
+
+
+
+
+.print h1 {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.print h2 {
+ padding: 10px;
+ border: 1px solid black;
+ display: inline-block;
+ margin-left: 10px;
+}
+
+.assinatura{
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+@media print{
+  .print{
+    display: block;
+  }
+  .dados{
+    display: none;
+  }
+
+}

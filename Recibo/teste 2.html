@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>Recibo de Emerson</title>
+</head>
+<body>
+  <div class="dados">
+    Recebemos de: 
+    <input type="text" id="nome"> <br> <br>
+
+    Valor R$:
+    <input type="text" id="numero" onchange="escreverExtenso()"><br><br>
+       
+    A importância de:
+    <input type="text" id="extensao" onchange="atualizarExtensao()">
+    <br><br>
+
+    Endereço:
+    <input type="text" id="endereco"> <br> <br>
+    Data:
+    <input type="text" id="data"><br><br>
+    CP:
+    <input type="text" step="0.01" id="cp"> <br><br>
+     
+    Código:
+    <select id="codigo">
+      <option value="685">685</option>
+      <option value="">nenhum</option>
+    </select>
+    <br> <br>
+
+    <button onclick="verRecibo()">Ver Recibo</button> 
+    <button onclick="gerarPDF()">Baixar PDF</button>
+
+  </div>
+
+  <div class="print">  
+    <p>
+      <div class="macaco1">Assoalhos modelo</div> 
+      <div class="macaco2">Recibo</div>
+      <div>
+        <img src="imag/assoalhos modelo.PNG" alt="Descrição da imagem" 
+        style="width: 100px; height: 100px; margin-left: 80%; margin-top: -66px;">
+      </div>
+    </p>
+    <hr>
+    <div class="macaco3">
+      <p>Recebemos de: <span id="recibo_nome"></span></p>
+      <hr>
+      <p>Endereço: <span id="recibo_endereco"></span></p>
+      <hr>
+      <p>Curitiba, 
+      <span id="recibo_data"></span></p>
+      <hr>
+      <p>CNPJ: <span id="recibo_cp"></span></p>
+      <hr>
+      <p>Código: <span id="recibo_codigo"></span></p>
+      <hr>
+      <p>Parcela: <span id="recibo_parcela"></span></p>
+      <hr>
+      <p>Valor: R$<span id="recibo_numero"></span> </p>
+       <hr>
+      <p>Emerson Vargas de Oliveira/CPF 022.339.829-24</p>
+      <hr>
+    </div>
+  </div>
+
+  <script src="caminho/para/html2pdf.bundle.min.js"></script>
+
+  <script>
+    function escreverExtenso() {
+      var numeroInput = document.getElementById('numero');
+      var extensaoInput = document.getElementById('extensao');
+      var numero = parseInt(numeroInput.value);
+      var extensao = converterParaExtenso(numero);
+      extensaoInput.value = extensao;
+      document.getElementById('recibo_extensao').innerHTML = extensao;
+    }
+
+    function atualizarExtensao() {
+      var extensaoInput = document.getElementById('extensao');
+      var extensao = extensaoInput.value;
+      extensaoInput.value = extensao;
+      document.getElementById('recibo_extensao').innerHTML = extensao;
+    }
+
+    function mostrarCampoPersonalizado(select) {
+      var campoPersonalizado = document.getElementById("campoPersonalizado");
+      if (select.value === "outro") {
+        campoPersonalizado.style.display = "block";
+      } else {
+        campoPersonalizado.style.display = "none";
+      }
+    }
+
+    function verRecibo() {
+      document.getElementById('recibo_nome').innerHTML = document.getElementById('nome').value;
+      document.getElementById('recibo_endereco').innerHTML = document.getElementById('endereco').value;
+      document.getElementById('recibo_data').innerHTML = document.getElementById('data').value;
+      document.getElementById('recibo_cp').innerHTML = document.getElementById('cp').value;
+      document.getElementById('recibo_codigo').innerHTML = document.getElementById('codigo').value;
+
+      var parcelaSelect = document.getElementById('parcela');
+      var parcelaValue = parcelaSelect.options[parcelaSelect.selectedIndex].value;
+      document.getElementById('recibo_parcela').innerHTML = parcelaValue;
+
+      document.getElementById('recibo_numero').innerHTML = document.getElementById('numero').value;
+    }
+
+    function gerarPDF() {
+      const element = document.querySelector('.print'); // Seleciona a div com a classe "print"
+      const opt = {
+        margin: 10, // Margem em milímetros
+        filename: 'recibo.pdf', // Nome do arquivo PDF gerado
+        image: { type: 'jpeg', quality: 0.98 }, // Opções de imagem
+        html2canvas: { scale: 2 }, // Aumenta a escala para melhor resolução
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, // Configurações do PDF
+      };
+
+      // Chama a função html2pdf para converter e baixar o PDF
+      html2pdf().set(opt).from(element).save();
+    }
+  </script>
+</body>
+</html>

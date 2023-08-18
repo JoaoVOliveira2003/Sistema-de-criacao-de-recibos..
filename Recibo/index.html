@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <title>Recibo de Emerson</title>
+</head>
+<body>
+  <div class="dados">
+    Recebemos de: 
+    <input type="text" id="nome"> <br> <br>
+
+   
+
+    Valor R$:
+    <input type="text" id="numero" onchange="escreverExtenso()"><br><br>
+       
+    A importância de:
+    <input type="text" id="extensao" onchange="atualizarExtensao()">
+    
+   
+
+    <br><br>
+    Referente:
+    <select id="referente" onchange="mostrarCampoPersonalizado(this)">
+      <option value=""></option>
+      <option value="Lixamento e aplicação de selador para cera.">Lixamento e aplicação de selador para cera.</option>
+      <option value="Limpeza em imóvel.">Limpeza em imóvel.</option>
+      <option value="Reparo em várias avarias.">Reparo em várias avarias.</option>
+      <option value="Conserto em avarias de guarda roupa.">Conserto em avarias de guarda roupa.</option>
+      <option value="Conserto em pia de cozinha.">Conserto em pia de cozinha.</option>
+      <option value="Conserto em pia de banheiro.">Conserto em pia de banheiro.</option>
+      <option value="Reparo em guarda roupa.">Reparo em guarda roupa.</option>
+      <option value="Limpeza de Imóvel.">Limpeza de Imóvel.</option>
+      <option value="Troca de vidros.">Troca de vidros.</option>
+      <option value="Reparo em várias avarias.">Reparo em várias avarias.</option>
+      <option value="outro">Outra opção</option>
+    </select>
+    <div id="campoPersonalizado" style="display: none;">
+      <input type="text" id="referentePersonalizado" placeholder="Digite um texto personalizado">
+    </div>
+    <br> <br>
+    
+    Endereço:
+    <input type="text" id="endereco"> <br> <br>
+    Data:
+    <input type="text" id="data"><br><br>
+    CP:
+    <input type="text" step="0.01" id="cp"> <br><br>
+     
+    Código:
+    <select id="codigo" onchange="mostrarCampoPersonalizado(this)">
+      <option value="685">685</option>
+      <option value="">nenhum</option>
+    </select>
+    <br> <br>
+
+    Parcela:
+    <select id="parcela" onchange="mostrarCampoPersonalizado(this)">
+      <option value="1">1</option>    
+      <option value="1/2">1/2</option>
+      <option value="2/2">2/2</option>
+      <option value="1/3">1/3</option>
+      <option value="2/3">2/3</option>
+      <option value="3/3">3/3</option>
+      <option value="1/4">1/4</option>
+      <option value="2/4">2/4</option>
+      <option value="3/4">3/4</option>
+      <option value="4/4">4/4</option>
+      <option value="">nenhuma</option>
+    </select>   
+    <br> <br>
+  
+   
+    <button onclick="verRecibo()">Ver Recibo</button> 
+    <button onclick="gerarRecibo()">Gerar Recibo</button> 
+  </div>
+
+  <div class="print">  
+    <p>
+      <div class="macaco1">Assoalhos modelo</div> 
+      <div class="macaco2">Recibo</div>
+      <div>
+        <img src="imag/assoalhos modelo.PNG" alt="Descrição da imagem" 
+        style="width: 100px; height: 100px; margin-left: 80%; margin-top: -66px;">
+      </div>
+    </p>
+    <hr>
+    
+<div class="macaco3">
+  <p>Recebemos de: <span id="recibo_nome"></span></p>
+  <hr>
+  <p>Valor:R$<span id="recibo_numero"></span> </p>
+  <hr>
+  <p>A importanca: <span id="recibo_extensao" contenteditable="true"></span> </p>
+  <hr>
+  <p>Parcela: <span id="recibo_parcela"></span></p>
+  <hr>
+  <p>Referente: <span id="recibo_referente"></span></p>
+  <hr> 
+  <p>Endereço: <span id="recibo_endereco"></span></p>
+  <hr>
+  <p>CP: <span id="recibo_cp"></span></p>
+  <hr>
+  <p>Código: <span id="recibo_codigo"></span></p>
+  <hr>
+  <p>Curitiba, 
+  <span id="recibo_data"></span></p>
+  <hr>
+  <p>Emerson Vargas de Oliveira/CPF 022.339.829-24</p>
+  
+</div>
+  </div>
+
+  <script>
+
+function escreverExtenso() {
+        var numeroInput = document.getElementById('numero');
+        var extensaoInput = document.getElementById('extensao');
+        var numero = parseInt(numeroInput.value);
+        var extensao = converterParaExtenso(numero);
+        extensaoInput.value = extensao;
+        document.getElementById('recibo_extensao').innerHTML = extensao;
+      }
+
+      function atualizarInputExtensao() {
+        var extensaoInput = document.getElementById('extensao');
+        var extensao = document.getElementById('recibo_extensao').textContent;
+        extensaoInput.value = extensao;
+      }
+
+      function atualizarExtensao() {
+        var extensaoInput = document.getElementById('extensao');
+        var extensao = extensaoInput.value;
+        extensaoInput.value = extensao;
+        document.getElementById('recibo_extensao').innerHTML = extensao;
+      }
+
+
+function mostrarCampoPersonalizado(select) {
+  var campoPersonalizado = document.getElementById("campoPersonalizado");
+  if (select.value === "outro") {
+    campoPersonalizado.style.display = "block";
+  } else {
+    campoPersonalizado.style.display = "none";
+  }
+}
+
+  function mostrarCampoPersonalizado(select) {
+    var campoPersonalizado = document.getElementById("campoPersonalizado");
+    if (select.value === "outro") {
+      campoPersonalizado.style.display = "block";
+    } else {
+      campoPersonalizado.style.display = "none";
+    }
+  }
+  
+  function verRecibo() {
+    document.getElementById('recibo_nome').innerHTML = document.getElementById('nome').value;
+    document.getElementById('recibo_extensao').innerHTML = document.getElementById('recibo_extensao').textContent;
+    
+    var referenteSelect = document.getElementById('referente');
+    var referenteValue = referenteSelect.options[referenteSelect.selectedIndex].value;
+    if (referenteValue === 'outro') {
+      document.getElementById('recibo_referente').innerHTML = document.getElementById('referentePersonalizado').value;
+    } else {
+      document.getElementById('recibo_referente').innerHTML = referenteValue;
+    }
+    
+    document.getElementById('recibo_endereco').innerHTML = document.getElementById('endereco').value;
+    document.getElementById('recibo_data').innerHTML = document.getElementById('data').value;
+    document.getElementById('recibo_cp').innerHTML = document.getElementById('cp').value;
+    document.getElementById('recibo_codigo').innerHTML = document.getElementById('codigo').value;
+    
+    var parcelaSelect = document.getElementById('parcela');
+    var parcelaValue = parcelaSelect.options[parcelaSelect.selectedIndex].value;
+    if (parcelaValue === 'outro') {
+      document.getElementById('recibo_parcela').innerHTML = document.getElementById('parcelaPersonalizado').value;
+    } else {
+      document.getElementById('recibo_parcela').innerHTML = parcelaValue;
+    }
+    
+
+    document.getElementById('recibo_numero').innerHTML = document.getElementById('numero').value;
+        
+  }
+  
+  function gerarRecibo() {
+    document.getElementById('recibo_nome').innerHTML = document.getElementById('nome').value;
+    document.getElementById('recibo_extensao').innerHTML = document.getElementById('recibo_extensao').textContent;
+    var referenteSelect = document.getElementById('referente');
+    var referenteValue = referenteSelect.options[referenteSelect.selectedIndex].value;
+    if (referenteValue === 'outro') {
+      document.getElementById('recibo_referente').innerHTML = document.getElementById('referentePersonalizado').value;
+    } else {
+      document.getElementById('recibo_referente').innerHTML = referenteValue;
+    }
+    
+    document.getElementById('recibo_endereco').innerHTML = document.getElementById('endereco').value;
+    document.getElementById('recibo_data').innerHTML = document.getElementById('data').value;
+    document.getElementById('recibo_cp').innerHTML = document.getElementById('cp').value;
+    document.getElementById('recibo_codigo').innerHTML = document.getElementById('codigo').value;
+    
+    var parcelaSelect = document.getElementById('parcela');
+    var parcelaValue = parcelaSelect.options[parcelaSelect.selectedIndex].value;
+    if (parcelaValue === 'outro') {
+      document.getElementById('recibo_parcela').innerHTML = document.getElementById('parcelaPersonalizado').value;
+    } else {
+      document.getElementById('recibo_parcela').innerHTML = parcelaValue;
+    }
+    
+
+    document.getElementById('recibo_numero').innerHTML = document.getElementById('numero').value;
+    
+    window.print();
+  }
+  
+  function converterParaExtenso(numero) {
+        var unidades = ['', 'hum', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove'];
+        var especiais = ['', 'onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito', 'dezenove'];
+        var dezenas = ['', '', 'vinte', 'trinta', 'quarenta', 'cinquenta', 'sessenta', 'setenta', 'oitenta', 'noventa'];
+        var centenas = ['', 'cento', 'duzentos', 'trezentos', 'quatrocentos', 'quinhentos', 'seiscentos', 'setecentos', 'oitocentos', 'novecentos'];
+        var milhares = ['', 'mil', 'dois mil', 'três mil', 'quatro mil', 'cinco mil', 'seis mil', 'sete mil', 'oito mil', 'nove mil'];
+    
+        if (numero === 0) {
+          return 'zero';
+        } else if (numero < 10) {
+          return unidades[numero];
+        } else if (numero < 20) {
+          return especiais[numero - 10];
+        } else if (numero < 100) {
+          var dezena = Math.floor(numero / 10);
+          var unidade = numero % 10;
+          if (unidade === 0) {
+            return dezenas[dezena];
+          } else {
+            return dezenas[dezena] + ' e ' + unidades[unidade];
+          }
+        } else if (numero < 1000) {
+          var centena = Math.floor(numero / 100);
+          var resto = numero % 100;
+          if (resto === 0) {
+            return centenas[centena];
+          } else {
+            return centenas[centena] + ' e ' + converterParaExtenso(resto);
+          }
+        } else if (numero < 10000) {
+          var milhar = Math.floor(numero / 1000);
+          var resto = numero % 1000;
+          if (resto === 0) {
+            return milhares[milhar];
+          } else {
+            var extensoMilhar = milhares[milhar];
+            var extensoResto = converterParaExtenso(resto);
+            return extensoMilhar + ' e ' + extensoResto;
+          }
+        } else {
+          return 'Número inválido';
+        }
+      }
+
+
+
+
+
+  </script>
+</body>
+</html>
