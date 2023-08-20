@@ -3,7 +3,6 @@
   margin: 0;
 }
 
-
 .macaco1{
   font-weight: bold;
   margin-left: 30%;
@@ -11,10 +10,47 @@
   margin-top: 33px;
 }
 
-br{
-  margin: 4cm;
+hr{
+  margin: 3px 0; /* Ajuste a margem conforme necessário */
 }
 
+.cp {
+  margin-left: 80%;
+  margin-top: 10px;
+  position: relative;
+  top: -190px; /* Ajuste o valor conforme necessário */
+}
+
+.codigo{
+  margin-left: 80%;
+  margin-top: 10px;
+  position: relative;
+  top: -190px; /* Ajuste o valor conforme necessário */
+}
+
+.parcela{
+  margin-left: 80%;
+  margin-top: 10px;
+  position: relative;
+  top: -0px; /* Ajuste o valor conforme necessário */
+}
+
+
+
+
+
+
+.curitiba{
+  margin-top: -55px;
+  position: relative;
+}
+
+.valor{
+  margin-left: 80%;
+  margin-top: 10px;
+  position: relative;
+  top:30px; /* Ajuste o valor conforme necessário */
+}
 
 .macaco2{
   font-weight: bold;
@@ -63,16 +99,6 @@ hr{
 
 }
 
-.linhavertical {
-    position: absolute;
-    top: 0;
-    left: 5%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 100%;
-    background-color: red;
-  }
-  
 
 
 
@@ -93,14 +119,4 @@ hr{
 .assinatura{
   border-bottom: 1px solid black;
   text-align: center;
-}
-
-@media print{
-  .print{
-    display: block;
-  }
-  .dados{
-    display: none;
-  }
-
 }

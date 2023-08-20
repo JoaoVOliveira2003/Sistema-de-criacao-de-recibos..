@@ -7,21 +7,15 @@
 
   <title>Recibo de Emerson</title>
 </head>
+
 <body>
   <div class="dados">
     Recebemos de: 
     <input type="text" id="nome"> <br> <br>
-
-   
-
     Valor R$:
     <input type="text" id="numero" onchange="escreverExtenso()"><br><br>
-       
     A importância de:
     <input type="text" id="extensao" onchange="atualizarExtensao()">
-    
-   
-
     <br><br>
     Referente:
     <select id="referente" onchange="mostrarCampoPersonalizado(this)">
@@ -41,22 +35,19 @@
     <div id="campoPersonalizado" style="display: none;">
       <input type="text" id="referentePersonalizado" placeholder="Digite um texto personalizado">
     </div>
-    <br> <br>
-    
+    <br> <br>    
     Endereço:
     <input type="text" id="endereco"> <br> <br>
     Data:
     <input type="text" id="data"><br><br>
     CP:
     <input type="text" step="0.01" id="cp"> <br><br>
-     
     Código:
     <select id="codigo" onchange="mostrarCampoPersonalizado(this)">
       <option value="685">685</option>
       <option value="">nenhum</option>
     </select>
     <br> <br>
-
     Parcela:
     <select id="parcela" onchange="mostrarCampoPersonalizado(this)">
       <option value="1">1</option>    
@@ -72,47 +63,55 @@
       <option value="">nenhuma</option>
     </select>   
     <br> <br>
-  
-   
     <button onclick="verRecibo()">Ver Recibo</button> 
     <button onclick="gerarRecibo()">Gerar Recibo</button> 
   </div>
 
-  <div class="print">  
+
+
+  <div class="print">  <!-- aqui é a parte de cima-->
     <p>
       <div class="macaco1">Assoalhos modelo</div> 
       <div class="macaco2">Recibo</div>
       <div>
         <img src="imag/assoalhos modelo.PNG" alt="Descrição da imagem" 
         style="width: 100px; height: 100px; margin-left: 80%; margin-top: -66px;">
-      </div>
+      </div> 
+    <br>
     </p>
-    <hr>
-    
-<div class="macaco3">
-  <p>Recebemos de: <span id="recibo_nome"></span></p>
-  <hr>
-  <p>Valor:R$<span id="recibo_numero"></span> </p>
-  <hr>
-  <p>A importanca: <span id="recibo_extensao" contenteditable="true"></span> </p>
-  <hr>
-  <p>Parcela: <span id="recibo_parcela"></span></p>
-  <hr>
-  <p>Referente: <span id="recibo_referente"></span></p>
-  <hr> 
-  <p>Endereço: <span id="recibo_endereco"></span></p>
-  <hr>
-  <p>CP: <span id="recibo_cp"></span></p>
-  <hr>
-  <p>Código: <span id="recibo_codigo"></span></p>
-  <hr>
-  <p>Curitiba, 
-  <span id="recibo_data"></span></p>
-  <hr>
-  <p>Emerson Vargas de Oliveira/CPF 022.339.829-24</p>
+
   
-</div>
-  </div>
+    <div class="macaco3">
+      <p>Recebemos de: <span id="recibo_nome"></span></p>
+      <hr>
+      <div class="valor">
+        <p>Valor: R$<span id="recibo_numero"></span></p>
+      </div>
+    
+      <hr>
+      <p>A importância: <span id="recibo_extensao" contenteditable="true"></span></p>
+      <hr>
+      <div class="parcela">
+        <p>Parcela: <span id="recibo_parcela"></span></p>
+      </div>
+      <hr>
+      <p>Referente: <span id="recibo_referente"></span></p>
+      <hr>
+      <p>Endereço: <span id="recibo_endereco"></span></p>
+      <hr>
+      <div class="cp">
+        <p>CP: <span id="recibo_cp"></span></p>
+      </div>
+      <div class="codigo">
+        <p>Código: <span id="recibo_codigo"></span></p>
+      </div>
+      <div class="curitiba">
+        <p>Curitiba, <spasn id="recibo_data"></span></p>
+      </div>
+      <hr>
+      <p>Emerson Vargas de Oliveira/CPF 022.339.829-24</p>
+    </div>
+    
 
   <script>
 
